@@ -1,6 +1,6 @@
 package controller;
 
-import exception.ExceptionWrapper;
+import common.exception.ExceptionWrapper;
 import model.entity.Tasks;
 import model.service.TaskService;
 
@@ -69,9 +69,13 @@ public class TaskController {
     @GET
     @Path("/update")
     @Produces("application/json")
-    public Response update(@QueryParam("taskId") String taskId, @QueryParam("title") String title, @QueryParam("description") String description) {
+    public Response update(@QueryParam("id") String id, @QueryParam("taskId") String taskId, @QueryParam("title") String title, @QueryParam("description") String description) {
         try {
             Tasks tasks = new Tasks();
+            tasks.setId(Long.parseLong(id))
+                    .setTaskId(Long.parseLong(taskId))
+                    .setTitle(title)
+                    .setDescription(description);
             TaskService.getInstance().update(tasks);
             return Response
                     .status(Response.Status.OK)

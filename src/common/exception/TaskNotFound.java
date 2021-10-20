@@ -1,4 +1,4 @@
-package exception;
+package common.exception;
 
 public class TaskNotFound extends Exception{
     public TaskNotFound(){

@@ -4,13 +4,10 @@ package model.service;
 import model.entity.Tasks;
 import model.repository.TasksDataAccess;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import java.util.List;
 
 public class TaskService implements TaskServiceBase {
-    private static TaskService taskService = new TaskService();
+    private static final TaskService taskService = new TaskService();
 
     private TaskService() {
     }
@@ -39,7 +36,6 @@ public class TaskService implements TaskServiceBase {
             return tasksDataAccess.selectAll();
 
         }
-
     }
 
     @Override

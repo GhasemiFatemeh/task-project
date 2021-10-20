@@ -4,8 +4,9 @@ function openChooseModal() {
 }
 
 function openDeleteModal() {
-    closeChooseModal()
+    closeChooseModal();
     document.getElementById('delete-modal').style.display = 'block';
+
 }
 
 function openUpdateModal(taskId, title, description) {
@@ -16,6 +17,24 @@ function openUpdateModal(taskId, title, description) {
     document.getElementById('taskDescription').value = description;
 }
 
+//delete task when delete button is clicked
+function deleteTask (){
+    let id=Request.getCookie("id");
+    Request.send("GET","http://localhost:8081/tasks/manageTasks/delete?id="+id);
+    closeDeleteModal();
+    fillTable();
+}
+
+//update task when update button is clicked
+function updateTask(){
+    let id=Request.getCookie("id");
+    let taskId=Request.getCookie("taskId");
+    let title=Request.getCookie("title");
+    let description=Request.getCookie("description");
+    Request.send("GET",'http://localhost:8081/tasks/manageTasks/update?id='+id+ 'taskId=' + taskId + '&title=' + title + '&description=' + description);
+    closeUpdateModal();
+    fillTable();
+}
 //close modals
 function closeChooseModal() {
     document.getElementById('choose-modal').style.display = 'none';
@@ -27,6 +46,7 @@ function closeDeleteModal() {
 
 function closeUpdateModal() {
     document.getElementById('update-modal').style.display = 'none';
+    fillTable();
 }
 
 //Close Modals with clicking anywhere on the page
@@ -60,13 +80,15 @@ if (navigator.appName === "Microsoft Internet Explorer") {
 http.open("GET", "http://localhost:8081/tasks/manageTasks/findAll", true);
 http.send();
 http.onreadystatechange = function () {
-
     if (http.readyState === 4) {
-        UIManager.fillSelectableTable(["taskId", "title", "description"], http.responseText, 'tableRow', 'onclick', 'onClickCallBack');
+       fillTable();
     }
 }
-
+function fillTable(){
+    UIManager.fillSelectableTable(["taskId", "title", "description"], http.responseText, 'tableRow', 'onclick', 'onClickCallBack');
+}
 function onClickCallBack(s) {
+    Response.addCookie("id",s['id']);
     openChooseModal();
 }
 

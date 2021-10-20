@@ -1,6 +1,6 @@
 package model.repository;
 
-import exception.TaskNotFound;
+import common.exception.TaskNotFound;
 import model.entity.Tasks;
 import model.repository.common.JDBC;
 
