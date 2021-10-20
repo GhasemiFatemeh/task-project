@@ -4,14 +4,16 @@
     <meta charset="UTF-8">
     <title>Add Tasks</title>
     <link href="../icon/2199111_add_create_new_plus_icon.png" rel="icon">
+    <link href="../imports/fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet">
     <link href="../imports/bootstrap.min.css" rel="stylesheet">
     <link href="../css/insert.css" rel="stylesheet">
 </head>
 <body>
-<header>
+<header class="">
     <h1 class="text-white text-center m-4">Add Task</h1>
+    <div class="text-center mb-4"><a href="../../index.html" onclick="location.reload()" class="text-white text-center border rounded-circle p-3"><i class="fas fa-home"></i></a></div>
 </header>
-<main>
+<main class="mb-4">
     <div class="col-7 m-auto border rounded p-4">
         <form id="form" method="Get">
             <div class="d-flex">
@@ -27,7 +29,7 @@
             </div>
             <div class="form-group col-12">
                 <label class="text-white" for="taskDescription">Description</label>
-                <textarea class="form-control" id="taskDescription" name="description" rows="4" type="text"></textarea>
+                <textarea class="form-control" id="taskDescription" name="description" rows="9" type="text"></textarea>
             </div>
             <div class="d-flex justify-content-center">
                 <button type="button" onclick="sendInformation()" class="btn btn-link btn-success text-decoration-none text-white">
@@ -53,12 +55,12 @@
         http.send();
         http.onreadystatechange = function () {
             if (http.readyState === 4 ) {
-                if (http.status===200) {
+                if (http.status === 200) {
                     http.responseText;
-                    location.replace("/TaskWeb/view/taskManagement.html");
+                    location.replace("http://localhost:8081/TaskWeb/view/taskManagement.html");
                 }
                 else {
-                    alert("Not successful!")
+                    alert("Not Successful !");
                 }
             }
         }
