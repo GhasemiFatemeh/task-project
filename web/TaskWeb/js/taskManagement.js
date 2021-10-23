@@ -9,32 +9,29 @@ function openDeleteModal() {
 
 }
 
-function openUpdateModal(taskId, title, description) {
-    closeChooseModal()
+function openUpdateModal() {
+    closeChooseModal();
     document.getElementById('update-modal').style.display = 'block';
-    document.getElementById('taskId').value = taskId;
-    document.getElementById('taskTitle').value = title;
-    document.getElementById('taskDescription').value = description;
+    Response.addCookie("id")
+    let taskId = Request.getCookie("taskId");
+    let title = Request.getCookie("title");
+    let description = Request.getCookie("description");
+    document.getElementById("taskId").value = taskId;
+    document.getElementById("taskTitle").value = title;
+    document.getElementById("taskDescription").value = description;
 }
 
+
 //delete task when delete button is clicked
-function deleteTask (){
-    let id=Request.getCookie("id");
-    Request.send("GET","http://localhost:8081/tasks/manageTasks/delete?id="+id);
+function deleteTask() {
+    let id = Request.getCookie("id");
+    Request.send("GET", "http://localhost:8081/tasks/manageTasks/delete?id=" + id);
     closeDeleteModal();
     fillTable();
 }
 
 //update task when update button is clicked
-function updateTask(){
-    let id=Request.getCookie("id");
-    let taskId=Request.getCookie("taskId");
-    let title=Request.getCookie("title");
-    let description=Request.getCookie("description");
-    Request.send("GET",'http://localhost:8081/tasks/manageTasks/update?id='+id+ 'taskId=' + taskId + '&title=' + title + '&description=' + description);
-    closeUpdateModal();
-    fillTable();
-}
+
 //close modals
 function closeChooseModal() {
     document.getElementById('choose-modal').style.display = 'none';
@@ -68,27 +65,40 @@ window.addEventListener('keydown', function (event) {
 })
 
 
-//Requests
-
-let json;
-let http;
-if (navigator.appName === "Microsoft Internet Explorer") {
-    http = new ActiveXObject("Microsoft.XMLHTTP");
-} else {
-    http = new XMLHttpRequest();
-}
-http.open("GET", "http://localhost:8081/tasks/manageTasks/findAll", true);
-http.send();
-http.onreadystatechange = function () {
-    if (http.readyState === 4) {
-       fillTable();
+//Request
+function fillTable() {
+    let http;
+    if (navigator.appName === "Microsoft Internet Explorer") {
+        http = new ActiveXObject("Microsoft.XMLHTTP");
+    } else {
+        http = new XMLHttpRequest();
+    }
+    http.open("GET", "http://localhost:8081/tasks/manageTasks/findAll", true);
+    http.send();
+    http.onreadystatechange = function () {
+        if (http.readyState === 4) {
+            UIManager.fillSelectableTable(["taskId", "title", "description"], http.responseText, 'tableRow', 'onclick', 'onClickCallBack');
+        }
     }
 }
-function fillTable(){
-    UIManager.fillSelectableTable(["taskId", "title", "description"], http.responseText, 'tableRow', 'onclick', 'onClickCallBack');
-}
+
 function onClickCallBack(s) {
-    Response.addCookie("id",s['id']);
+    Response.addCookie("id", s['id']);
+    Response.addCookie("taskId", s['taskId']);
+    Response.addCookie("title", s['title']);
+    Response.addCookie("description", s['description']);
     openChooseModal();
 }
+
+function updateTask() {
+    let id = Request.getCookie("id");
+    alert(id);
+    let taskId = document.getElementById("taskId").value;
+    let title = document.getElementById("taskTitle").value;
+    let description = document.getElementById("taskDescription").value;
+    alert(id+taskId + title + description);
+    Request.send("GET", "http://localhost:8081/tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + description);
+    closeUpdateModal();
+}
+
 

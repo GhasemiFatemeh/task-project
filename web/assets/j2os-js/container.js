@@ -253,9 +253,9 @@ class UIManager {
             html += "<tr>";
             html +="<td><input  type='radio' name='"+componentId+"' " + onEvent + "='" + callback + "(" + JSON.stringify(jsonObject) + ")' /></td>";
             for (const columnName of columnArray) {
-                html += "<td>";
+                html += "<td><pre>";
                 html += jsonObject[columnName];
-                html += "</td>";
+                html += "</td></pre>";
             }
             html += "</tr>";
         }

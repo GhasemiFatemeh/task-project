@@ -71,7 +71,6 @@ public class TaskService implements TaskServiceBase {
     public void update(Tasks task) throws Exception {
         try (TasksDataAccess tasksDataAccess = new TasksDataAccess()) {
             tasksDataAccess.update(task);
-
         }
     }
 

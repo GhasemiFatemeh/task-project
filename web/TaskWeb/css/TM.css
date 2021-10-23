@@ -11,4 +11,12 @@ i{
 .modal{
     background-color: rgba(71, 78, 93,0.8);
     padding-top: 80px;
+    animation: fadein 0.25s;
+
+}
+
+@keyframes fadein {
+    from{opacity: 0}
+    to{opacity: 1}
+
 }
