@@ -248,13 +248,18 @@ class UIManager {
             alert(s['id']);
         }
          */
+
         let html = "";
         for (const jsonObject of JSON.parse(jsonArray)) {
             html += "<tr>";
             html +="<td><input  type='radio' name='"+componentId+"' " + onEvent + "='" + callback + "(" + JSON.stringify(jsonObject) + ")' /></td>";
             for (const columnName of columnArray) {
+                let jsonColumnValue=jsonObject[columnName];
+                if(jsonColumnValue.length>50){
+                    jsonColumnValue=jsonColumnValue.substring(0,50)+" ...";
+                }
                 html += "<td><pre>";
-                html += jsonObject[columnName];
+                html += jsonColumnValue;
                 html += "</td></pre>";
             }
             html += "</tr>";

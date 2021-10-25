@@ -6,13 +6,12 @@ function openChooseModal() {
 function openDeleteModal() {
     closeChooseModal();
     document.getElementById('delete-modal').style.display = 'block';
-
 }
 
+//update task when update button is clicked
 function openUpdateModal() {
     closeChooseModal();
     document.getElementById('update-modal').style.display = 'block';
-    Response.addCookie("id")
     let taskId = Request.getCookie("taskId");
     let title = Request.getCookie("title");
     let description = Request.getCookie("description");
@@ -27,10 +26,20 @@ function deleteTask() {
     let id = Request.getCookie("id");
     Request.send("GET", "http://localhost:8081/tasks/manageTasks/delete?id=" + id);
     closeDeleteModal();
-    fillTable();
+    location.reload();
+
 }
 
-//update task when update button is clicked
+function updateTask() {
+    let id = Request.getCookie("id");
+    let taskId = document.getElementById("taskId").value;
+    let title = document.getElementById("taskTitle").value;
+    let description = document.getElementById("taskDescription").value;
+    Request.send("GET", "http://localhost:8081/tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + description);
+    closeUpdateModal();
+    location.reload();
+}
+
 
 //close modals
 function closeChooseModal() {
@@ -90,15 +99,6 @@ function onClickCallBack(s) {
     openChooseModal();
 }
 
-function updateTask() {
-    let id = Request.getCookie("id");
-    alert(id);
-    let taskId = document.getElementById("taskId").value;
-    let title = document.getElementById("taskTitle").value;
-    let description = document.getElementById("taskDescription").value;
-    alert(id+taskId + title + description);
-    Request.send("GET", "http://localhost:8081/tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + description);
-    closeUpdateModal();
-}
+
 
 
