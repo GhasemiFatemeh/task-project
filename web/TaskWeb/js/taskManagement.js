@@ -1,16 +1,11 @@
 //Open Modals
-function openChooseModal() {
-    document.getElementById('choose-modal').style.display = 'block';
-}
-
 function openDeleteModal() {
-    closeChooseModal();
+    closeUpdateModal();
     document.getElementById('delete-modal').style.display = 'block';
 }
 
 //update task when update button is clicked
 function openUpdateModal() {
-    closeChooseModal();
     document.getElementById('update-modal').style.display = 'block';
     let taskId = Request.getCookie("taskId");
     let title = Request.getCookie("title");
@@ -42,10 +37,6 @@ function updateTask() {
 
 
 //close modals
-function closeChooseModal() {
-    document.getElementById('choose-modal').style.display = 'none';
-}
-
 function closeDeleteModal() {
     document.getElementById('delete-modal').style.display = 'none';
 }
@@ -58,7 +49,6 @@ function closeUpdateModal() {
 //Close Modals with clicking anywhere on the page
 window.onclick = function (event) {
     if ((event.target === document.getElementById('delete-modal')) || event.target === document.getElementById('update-modal') || event.target === document.getElementById('choose-modal')) {
-        closeChooseModal()
         closeDeleteModal();
         closeUpdateModal();
     }
@@ -67,7 +57,6 @@ window.onclick = function (event) {
 //Close Modals with esc
 window.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
-        closeChooseModal()
         closeDeleteModal();
         closeUpdateModal();
     }
@@ -96,7 +85,7 @@ function onClickCallBack(s) {
     Response.addCookie("taskId", s['taskId']);
     Response.addCookie("title", s['title']);
     Response.addCookie("description", s['description']);
-    openChooseModal();
+    openUpdateModal();
 }
 
 

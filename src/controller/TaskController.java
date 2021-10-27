@@ -28,6 +28,7 @@ public class TaskController {
                     .type(MediaType.APPLICATION_JSON)
                     .build();
         } catch (Exception e) {
+            e.printStackTrace();
             return Response
                     .status(Response.Status.FORBIDDEN)
                     .type(MediaType.APPLICATION_JSON)

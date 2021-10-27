@@ -252,11 +252,11 @@ class UIManager {
         let html = "";
         for (const jsonObject of JSON.parse(jsonArray)) {
             html += "<tr>";
-            html +="<td><input  type='radio' name='"+componentId+"' " + onEvent + "='" + callback + "(" + JSON.stringify(jsonObject) + ")' /></td>";
+            html +="<td class='text-center'><input  type='radio' name='"+componentId+"' " + onEvent + "='" + callback + "(" + JSON.stringify(jsonObject) + ")' /></td>";
             for (const columnName of columnArray) {
                 let jsonColumnValue=jsonObject[columnName];
                 if(jsonColumnValue.length>50){
-                    jsonColumnValue=jsonColumnValue.substring(0,50)+" ...";
+                    jsonColumnValue=jsonColumnValue.substring(0,50)+"<span title='See the complete description on Details'> ...</span>";
                 }
                 html += "<td><pre>";
                 html += jsonColumnValue;

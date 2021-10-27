@@ -10,6 +10,7 @@
 </head>
 <body>
 <header class="">
+
     <h1 class="text-white text-center m-4">Add Task</h1>
     <div class="text-center mb-4"><a href="../../index.html" onclick="location.reload()" class="text-white text-center border rounded-circle p-3 mb-5"><i class="fas fa-home"></i></a></div>
 </header>
@@ -39,9 +40,11 @@
             </div>
         </form>
     </div>
-    <div id="snackbar"><p class="text-center bg-success rounded text-white p-2">Task is successfully saved!</p></div>
+    <div id="successSnackbar"><p class="text-center bg-success rounded text-white p-2">Task is successfully saved!</p></div>
+    <div id="failedSnackbar"><p class="text-center bg-danger rounded text-white p-2">Task isn't saved successfully!</p></div>
 </main>
 <script>
+
     function sendInformation() {
         let taskId = document.getElementById('taskId').value;
         let title = document.getElementById('taskTitle').value;
@@ -59,10 +62,10 @@
             if (http.readyState === 4 ) {
                 if (http.status === 200) {
                     http.responseText;
-                    showSnackbar();
+                    showSuccessSnackbar();
                 }
                 else {
-                    alert("Not Successful !");
+                    showFailedSnackbar();
                 }
             }
         }
@@ -71,8 +74,13 @@
     function redirectTasksPage(){
         location.replace("http://localhost:8081/TaskWeb/view/taskManagement.html");
     }
-    function showSnackbar() {
-        let x = document.getElementById("snackbar");
+    function showSuccessSnackbar() {
+        let x = document.getElementById("successSnackbar");
+        x.className = "show";
+        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+    function showFailedSnackbar(){
+        let x = document.getElementById("failedSnackbar");
         x.className = "show";
         setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     }
