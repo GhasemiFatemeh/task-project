@@ -1,5 +1,6 @@
 package controller;
 
+import com.coverity.security.Escape;
 import common.exception.ExceptionWrapper;
 import model.entity.Tasks;
 import model.service.TaskService;
@@ -21,6 +22,10 @@ public class TaskController {
         try {
             Tasks task = new Tasks();
             task.setTaskId(Long.parseLong(taskId)).setTitle(title).setDescription(description);
+            //validation
+            task.setTitle(Validation.getInstance().protectFromHtmlInjection(task.getTitle()));
+            task.setDescription(Validation.getInstance().protectFromHtmlInjection(task.getDescription()));
+            //
             TaskService.getInstance().register(task);
             return Response
                     .status(Response.Status.OK)
@@ -72,15 +77,19 @@ public class TaskController {
     @Produces("application/json")
     public Response update(@QueryParam("id") String id, @QueryParam("taskId") String taskId, @QueryParam("title") String title, @QueryParam("description") String description) {
         try {
-            Tasks tasks = new Tasks();
-            tasks.setId(Long.parseLong(id))
+            Tasks task = new Tasks();
+            task.setId(Long.parseLong(id))
                     .setTaskId(Long.parseLong(taskId))
                     .setTitle(title)
                     .setDescription(description);
-            TaskService.getInstance().update(tasks);
+            //validation
+            task.setTitle(Validation.getInstance().protectFromHtmlInjection(task.getTitle()));
+            task.setDescription(Validation.getInstance().protectFromHtmlInjection(task.getDescription()));
+            //
+            TaskService.getInstance().update(task);
             return Response
                     .status(Response.Status.OK)
-                    .entity(tasks)
+                    .entity(task)
                     .type(MediaType.APPLICATION_JSON)
                     .build();
         } catch (Exception e) {

@@ -250,9 +250,16 @@ class UIManager {
          */
 
         let html = "";
+        let id = -100;
         for (const jsonObject of JSON.parse(jsonArray)) {
             html += "<tr>";
-            html +="<td class='text-center'><input  type='radio' name='"+componentId+"' " + onEvent + "='" + callback + "(" + JSON.stringify(jsonObject) + ")' /></td>";
+            let json = JSON.parse(JSON.stringify(jsonObject));
+            EntityManager.persist(id+"id",json.id);
+            EntityManager.persist(id+"title",json.title);
+            EntityManager.persist(id+"taskId",json.taskId);
+            EntityManager.persist(id+"description",json.description);
+            html +="<td class='text-center'><input  type='radio' name='"+componentId+"' " + onEvent + "='" + callback + "("+id+")' /></td>";
+            id--;
             for (const columnName of columnArray) {
                 let jsonColumnValue=jsonObject[columnName];
                 if(jsonColumnValue.length>50){
@@ -260,10 +267,11 @@ class UIManager {
                 }
                 html += "<td><pre>";
                 html += jsonColumnValue;
-                html += "</td></pre>";
+                html += "</pre></td>";
             }
             html += "</tr>";
         }
         document.getElementById(componentId).innerHTML = html;
     }
+
 }

@@ -7,18 +7,18 @@ function openDeleteModal() {
 //update task when update button is clicked
 function openUpdateModal() {
     document.getElementById('update-modal').style.display = 'block';
-    let taskId = Request.getCookie("taskId");
-    let title = Request.getCookie("title");
-    let description = Request.getCookie("description");
+    let taskId = EntityManager.findOne("taskId");
+    let title = EntityManager.findOne("title");
+    let description = EntityManager.findOne("description");
     document.getElementById("taskId").value = taskId;
-    document.getElementById("taskTitle").value = title;
-    document.getElementById("taskDescription").value = description;
+    document.getElementById("taskTitle").innerHTML = title;
+    document.getElementById("taskDescription").innerHTML = description;
 }
 
 
 //delete task when delete button is clicked
 function deleteTask() {
-    let id = Request.getCookie("id");
+    let id = EntityManager.findOne("id");
     Request.send("GET", "http://localhost:8081/tasks/manageTasks/delete?id=" + id);
     closeDeleteModal();
     location.reload();
@@ -26,7 +26,7 @@ function deleteTask() {
 }
 
 function updateTask() {
-    let id = Request.getCookie("id");
+    let id = EntityManager.findOne("id");
     let taskId = document.getElementById("taskId").value;
     let title = document.getElementById("taskTitle").value;
     let description = document.getElementById("taskDescription").value;
@@ -81,10 +81,10 @@ function fillTable() {
 }
 
 function onClickCallBack(s) {
-    Response.addCookie("id", s['id']);
-    Response.addCookie("taskId", s['taskId']);
-    Response.addCookie("title", s['title']);
-    Response.addCookie("description", s['description']);
+    EntityManager.persist("id",EntityManager.findOne(s+"id"));
+    EntityManager.persist("taskId",EntityManager.findOne(s+"taskId"));
+    EntityManager.persist("title",EntityManager.findOne(s+"title"));
+    EntityManager.persist("description",EntityManager.findOne(s+"description"));
     openUpdateModal();
 }
 
