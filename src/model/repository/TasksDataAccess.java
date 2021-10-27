@@ -16,12 +16,12 @@ public class TasksDataAccess implements AutoCloseable {
     private PreparedStatement preparedStatement;
 
     public TasksDataAccess() throws Exception {
-        connection = JDBC.getConnection();
+        connection = JDBC.getConnection(JDBC.SQL_SERVER);
         connection.setAutoCommit(false);
     }
 
     public void insert(Tasks tasks) throws Exception {
-        preparedStatement = connection.prepareStatement("select task_seq.nextVal id from dual");
+        preparedStatement = connection.prepareStatement("SELECT NEXT VALUE FOR tasks_seq.seq id");
         ResultSet resultSet = preparedStatement.executeQuery();
         resultSet.next();
         long id = resultSet.getLong("id");
