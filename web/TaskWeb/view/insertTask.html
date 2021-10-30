@@ -7,6 +7,7 @@
     <link href="../imports/fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet">
     <link href="../imports/bootstrap.min.css" rel="stylesheet">
     <link href="../css/insert.css" rel="stylesheet">
+    <script src="../js/taskManagement.js"></script>
 </head>
 <body>
 <header class="">
@@ -48,7 +49,7 @@
     function sendInformation() {
         let taskId = document.getElementById('taskId').value;
         let title = document.getElementById('taskTitle').value;
-        let description = document.getElementById('taskDescription').value;
+        let description = getValidTextForSendRequest(document.getElementById('taskDescription').value);
         let req = 'http://localhost:8081/tasks/manageTasks/register?taskId=' + taskId + '&title=' + title + '&description=' + description;
         let http;
         if (navigator.appName === "Microsoft Internet Explorer") {

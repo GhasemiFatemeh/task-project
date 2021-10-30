@@ -1,6 +1,7 @@
 package controller;
 
 import com.coverity.security.Escape;
+import common.Tools;
 import common.exception.ExceptionWrapper;
 import model.entity.Tasks;
 import model.service.TaskService;
@@ -24,7 +25,7 @@ public class TaskController {
             task.setTaskId(Long.parseLong(taskId)).setTitle(title).setDescription(description);
             //validation
             task.setTitle(Validation.getInstance().protectFromHtmlInjection(task.getTitle()));
-            task.setDescription(Validation.getInstance().protectFromHtmlInjection(task.getDescription()));
+            task.setDescription(Validation.getInstance().protectFromHtmlInjection(Tools.getInstance().convertToNormalBreakLine(task.getDescription())));
             //
             TaskService.getInstance().register(task);
             return Response
@@ -81,7 +82,7 @@ public class TaskController {
             task.setId(Long.parseLong(id))
                     .setTaskId(Long.parseLong(taskId))
                     .setTitle(title)
-                    .setDescription(description);
+                    .setDescription(Tools.getInstance().convertToNormalBreakLine(description));
             //validation
             task.setTitle(Validation.getInstance().protectFromHtmlInjection(task.getTitle()));
             task.setDescription(Validation.getInstance().protectFromHtmlInjection(task.getDescription()));

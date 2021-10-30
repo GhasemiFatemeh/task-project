@@ -29,7 +29,7 @@ function updateTask() {
     let id = EntityManager.findOne("id");
     let taskId = document.getElementById("taskId").value;
     let title = document.getElementById("taskTitle").value;
-    let description = document.getElementById("taskDescription").value;
+    let description = getValidTextForSendRequest(document.getElementById("taskDescription").value);
     Request.send("GET", "http://localhost:8081/tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + description);
     closeUpdateModal();
     location.reload();
@@ -86,6 +86,11 @@ function onClickCallBack(s) {
     EntityManager.persist("title",EntityManager.findOne(s+"title"));
     EntityManager.persist("description",EntityManager.findOne(s+"description"));
     openUpdateModal();
+}
+
+function getValidTextForSendRequest(text) {
+    let out = text.replace(/\n/g, "/n/r");
+    return out;
 }
 
 
