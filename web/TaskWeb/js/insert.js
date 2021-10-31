@@ -1,11 +1,9 @@
-function getURL(){
-    return "http://localhost:8081/";
-}
+let pageURL="http://localhost:8081/";
 function sendInformation() {
     let taskId = document.getElementById('taskId').value;
     let title = document.getElementById('taskTitle').value;
     let description = getValidTextForSendRequest(document.getElementById('taskDescription').value);
-    let req = getURL()+'tasks/manageTasks/register?taskId=' + taskId + '&title=' + title + '&description=' + description;
+    let req = pageURL+'tasks/manageTasks/register?taskId=' + taskId + '&title=' + title + '&description=' + description;
     let http;
     if (navigator.appName === "Microsoft Internet Explorer") {
         http = new ActiveXObject("Microsoft.XMLHTTP");
@@ -28,7 +26,7 @@ function sendInformation() {
 }
 
 function redirectTasksPage(){
-    location.replace(getURL()+"TaskWeb/view/taskManagement.html");
+    location.replace(pageURL+"TaskWeb/view/taskManagement.html");
 }
 function showSuccessSnackbar() {
     let x = document.getElementById("successSnackbar");
