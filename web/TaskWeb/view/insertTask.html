@@ -8,6 +8,7 @@
     <link href="../imports/bootstrap.min.css" rel="stylesheet">
     <link href="../css/insert.css" rel="stylesheet">
     <script src="../js/taskManagement.js"></script>
+    <script src="../js/insert.js"></script>
 </head>
 <body>
 <header class="">
@@ -44,48 +45,5 @@
     <div id="successSnackbar"><p class="text-center bg-success rounded text-white p-2">Task is successfully saved!</p></div>
     <div id="failedSnackbar"><p class="text-center bg-danger rounded text-white p-2">Task isn't saved successfully!</p></div>
 </main>
-<script>
-
-    function sendInformation() {
-        let taskId = document.getElementById('taskId').value;
-        let title = document.getElementById('taskTitle').value;
-        let description = getValidTextForSendRequest(document.getElementById('taskDescription').value);
-        let req = 'http://localhost:8081/tasks/manageTasks/register?taskId=' + taskId + '&title=' + title + '&description=' + description;
-        let http;
-        if (navigator.appName === "Microsoft Internet Explorer") {
-            http = new ActiveXObject("Microsoft.XMLHTTP");
-        } else {
-            http = new XMLHttpRequest();
-        }
-        http.open("GET", req, true);
-        http.send();
-        http.onreadystatechange = function () {
-            if (http.readyState === 4 ) {
-                if (http.status === 200) {
-                    http.responseText;
-                    showSuccessSnackbar();
-                }
-                else {
-                    showFailedSnackbar();
-                }
-            }
-        }
-    }
-
-    function redirectTasksPage(){
-        location.replace("http://localhost:8081/TaskWeb/view/taskManagement.html");
-    }
-    function showSuccessSnackbar() {
-        let x = document.getElementById("successSnackbar");
-        x.className = "show";
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-    }
-    function showFailedSnackbar(){
-        let x = document.getElementById("failedSnackbar");
-        x.className = "show";
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-    }
-
-</script>
 </body>
 </html>

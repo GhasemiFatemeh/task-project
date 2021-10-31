@@ -1,3 +1,6 @@
+function getURL(){
+    return "http://localhost:8081/tasks/manageTasks/";
+}
 //Open Modals
 function openDeleteModal() {
     closeUpdateModal();
@@ -19,7 +22,7 @@ function openUpdateModal() {
 //delete task when delete button is clicked
 function deleteTask() {
     let id = EntityManager.findOne("id");
-    Request.send("GET", "http://localhost:8081/tasks/manageTasks/delete?id=" + id);
+    Request.send("GET", getURL()+"delete?id=" + id);
     closeDeleteModal();
     location.reload();
 
@@ -30,7 +33,7 @@ function updateTask() {
     let taskId = document.getElementById("taskId").value;
     let title = document.getElementById("taskTitle").value;
     let description = getValidTextForSendRequest(document.getElementById("taskDescription").value);
-    Request.send("GET", "http://localhost:8081/tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + description);
+    Request.send("GET", getURL()+"update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + description);
     closeUpdateModal();
     location.reload();
 }
@@ -71,7 +74,7 @@ function fillTable() {
     } else {
         http = new XMLHttpRequest();
     }
-    http.open("GET", "http://localhost:8081/tasks/manageTasks/findAll", true);
+    http.open("GET", getURL()+"findAll", true);
     http.send();
     http.onreadystatechange = function () {
         if (http.readyState === 4) {

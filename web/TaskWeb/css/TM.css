@@ -11,6 +11,7 @@ i{
 .modal{
     background-color: rgba(71, 78, 93,0.8);
     animation: fadein 0.25s;
+    height: 100%;
 
 }
 
