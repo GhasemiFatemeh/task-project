@@ -1,4 +1,15 @@
 body{
-    background: linear-gradient(to bottom right, darkblue, red) no-repeat fixed;
+    background: linear-gradient(to right, #dd3e54, #6be585) no-repeat fixed;
 }
 
+.special-color{
+    background-color: #e57373;
+    color: #fafafa;
+}
+h3{
+    color: #212121;
+}
+
+p{
+    color: #424242;
+}

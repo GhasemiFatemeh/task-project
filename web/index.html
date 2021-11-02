@@ -2,31 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Tasks</title>
+    <title>QC</title>
     <link href="TaskWeb/icon/tabIcon.png" rel="icon">
     <link href="TaskWeb/imports/bootstrap.min.css" rel="stylesheet">
     <link href="TaskWeb/css/index.css" rel="stylesheet">
     <script src="assets/j2os-js/container.js"></script>
 </head>
-<body class="text-center">
+<body>
+<header>
+    <h1 class=" m-5 text-white">What do you want to do?</h1>
+</header>
 <main>
-    <h1 class="align-content-center m-5 text-white">Hey! What do you want to do?</h1>
-    <div class="d-flex flex-row pt-4 justify-content-around">
-        <div class="border p-4 col-5 card">
-            <div class="card-body">
-            <h5 class="card-title">Add new Tasks</h5>
-            <p class="mb-4 card-text">You can insert new tasks by task ID, task title or task Description</p>
-            <a class="btn-danger text-center btn-link text-white p-2 text-decoration-none rounded"
-               href="TaskWeb/view/insertTask.html"
-               role="button">Insert</a>
+    <div>
+        <div class="bg-light rounded m-3 p-3">
+            <h3>Server log</h3>
+            <p>
+                Click below button to redirect to log page, then you will be able to see server's log.
+            </p>
+            <div class="text-right">
+                <a href="TaskWeb/view/log.html">
+                    <button class="btn special-color">Go!</button>
+                </a>
             </div>
         </div>
-        <div class="border col-5 p-4 card">
-            <div class="card-body">
-                <h5 class="card-title">Update and delete tasks</h5>
-                <p class="mb-4 card-text">You can see the list of tasks and update or delete tasks that are already existing</p>
-                <a class="btn-primary card-link card-link text-center text-white text-decoration-none p-2 rounded"
-                   href="TaskWeb/view/taskManagement.html" role="button">Update</a>
+        <div class="border-right bg-light rounded m-3 p-3 ">
+            <h3>Tasks</h3>
+            <p>
+                Click below button if you want to see all the tasks, insert new tasks, update or delete them.
+            </p>
+            <div class="text-right">
+                <a href="TaskWeb/view/tasks.html">
+                    <button class="btn special-color">Go!</button>
+                </a>
+            </div>
+        </div>
+        <div class="bg-light rounded m-3 p-3 ">
+            <h3>Test</h3>
+            <p>
+                Click below button if you want to test cloud visor project.
+            </p>
+            <div class="text-right">
+                <a href="TaskWeb/view/test.html">
+                    <button class="btn special-color">Go!</button>
+                </a>
             </div>
         </div>
     </div>

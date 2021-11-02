@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,400i,700");
+
 body{
     background: linear-gradient(to bottom right, #004085,crimson) no-repeat fixed ;
 }
@@ -14,7 +16,9 @@ i{
     height: 100%;
 
 }
-
+nav{
+    background-color: rgba(0,0,0,0.4);
+}
 @keyframes fadein {
     from{opacity: 0}
     to{opacity: 1}

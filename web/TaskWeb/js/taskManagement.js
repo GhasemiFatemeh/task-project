@@ -1,4 +1,3 @@
-let pageURL="http://localhost:8081/tasks/manageTasks/";
 //Open Modals
 function openDeleteModal() {
     closeUpdateModal();
@@ -12,7 +11,7 @@ function openUpdateModal() {
     let title = EntityManager.findOne("title");
     let description = EntityManager.findOne("description");
     document.getElementById("taskId").value = taskId;
-    document.getElementById("taskTitle").innerHTML = title;
+    document.getElementById("taskTitle").value = title;
     document.getElementById("taskDescription").innerHTML = description;
 }
 
@@ -20,7 +19,7 @@ function openUpdateModal() {
 //delete task when delete button is clicked
 function deleteTask() {
     let id = EntityManager.findOne("id");
-    Request.send("GET", pageURL+"delete?id=" + id);
+    Request.send("GET", pageURL+"tasks/manageTasks/delete?id=" + id);
     closeDeleteModal();
     location.reload();
 
@@ -30,10 +29,16 @@ function updateTask() {
     let id = EntityManager.findOne("id");
     let taskId = document.getElementById("taskId").value;
     let title = document.getElementById("taskTitle").value;
-    let description = getValidTextForSendRequest(document.getElementById("taskDescription").value);
-    Request.send("GET", pageURL+"update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + description);
+    let description = document.getElementById("taskDescription").value;
+    let desc=new Description(description);
+    alert(JSON.stringify(desc));
+    Request.send("POST", pageURL+"tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + JSON.stringify(desc));
     closeUpdateModal();
     location.reload();
+}
+
+function selectTask(){
+ Request.send("Get", pageURL+"tasks/manageTasks/")
 }
 
 
@@ -45,14 +50,6 @@ function closeDeleteModal() {
 function closeUpdateModal() {
     document.getElementById('update-modal').style.display = 'none';
     fillTable();
-}
-
-//Close Modals with clicking anywhere on the page
-window.onclick = function (event) {
-    if ((event.target === document.getElementById('delete-modal')) || event.target === document.getElementById('update-modal') || event.target === document.getElementById('choose-modal')) {
-        closeDeleteModal();
-        closeUpdateModal();
-    }
 }
 
 //Close Modals with esc
@@ -72,7 +69,7 @@ function fillTable() {
     } else {
         http = new XMLHttpRequest();
     }
-    http.open("GET", pageURL+"findAll", true);
+    http.open("GET", pageURL+"tasks/manageTasks/findAll", true);
     http.send();
     http.onreadystatechange = function () {
         if (http.readyState === 4) {
