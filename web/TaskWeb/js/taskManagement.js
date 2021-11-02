@@ -1,4 +1,3 @@
-let pageURL="http://localhost:8081/tasks/manageTasks/";
 //Open Modals
 function openDeleteModal() {
     closeUpdateModal();
@@ -33,8 +32,7 @@ function updateTask() {
     let title = document.getElementById("taskTitle").value;
     let description = document.getElementById("taskDescription").value;
     let desc=new Description(description);
-    alert(JSON.stringify(desc));
-    Request.send("POST", pageURL+"tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + JSON.stringify(desc));
+    Request.send("GET", pageURL+"tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + JSON.stringify(desc));
     closeUpdateModal();
     location.reload();
 }
@@ -52,14 +50,6 @@ function closeDeleteModal() {
 function closeUpdateModal() {
     document.getElementById('update-modal').style.display = 'none';
     fillTable();
-}
-
-//Close Modals with clicking anywhere on the page
-window.onclick = function (event) {
-    if ((event.target === document.getElementById('delete-modal')) || event.target === document.getElementById('update-modal') || event.target === document.getElementById('choose-modal')) {
-        closeDeleteModal();
-        closeUpdateModal();
-    }
 }
 
 //Close Modals with esc
