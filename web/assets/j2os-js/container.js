@@ -1,5 +1,6 @@
 class Request {
     static send(requestType, requestUrl, callBack, requestBody, headers) {
+        alert(requestUrl);
         if (typeof XMLHttpRequest === "undefined") {
             XMLHttpRequest = function () {
                 try {
@@ -19,7 +20,7 @@ class Request {
         }
         const http = new XMLHttpRequest();
         http.open(requestType, requestUrl, true);
-        //http.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
+        http.setRequestHeader('Content-Type', "application/json;charset=UTF-8");
         for (const headerName in headers) {
             http.setRequestHeader(headerName, headers[headerName]);
         }
@@ -262,7 +263,7 @@ class UIManager {
             id--;
             for (const columnName of columnArray) {
                 let jsonColumnValue=jsonObject[columnName];
-                if(jsonColumnValue.length>50){
+                if(jsonColumnValue.length>50 ){
                     jsonColumnValue=jsonColumnValue.substring(0,50)+"<span title='See the complete description on Details'> ...</span>";
                 }
                 html += "<td><pre>";

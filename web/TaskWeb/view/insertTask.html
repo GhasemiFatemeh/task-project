@@ -8,6 +8,8 @@
     <link href="../imports/bootstrap.min.css" rel="stylesheet">
     <link href="../css/insert.css" rel="stylesheet">
     <script src="../js/insert.js"></script>
+    <script src="../js/taskManagement.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
 <header class="">
@@ -31,7 +33,7 @@
             </div>
             <div class="form-group col-12">
                 <label class="text-white" for="taskDescription">Description</label>
-                <textarea class="form-control" id="taskDescription" name="description" rows="9" type="text"></textarea>
+                <div class="form-control" id="taskDescription" name="description" rows="9" type="text"></div>
             </div>
             <div class="d-flex justify-content-center">
                 <button type="button" onclick="sendInformation()" class="btn btn-default btn-link btn-success text-decoration-none text-white mr-2">Submit</button>
@@ -44,5 +46,14 @@
     <div id="successSnackbar"><p class="text-center bg-success rounded text-white p-2">Task is successfully saved!</p></div>
     <div id="failedSnackbar"><p class="text-center bg-danger rounded text-white p-2">Task isn't saved successfully!</p></div>
 </main>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#taskDescription' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
 </body>
 </html>

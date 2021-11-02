@@ -7,6 +7,6 @@ public class Tools {
 
     public String convertToNormalBreakLine(String inputTextQuery)
     {
-        return inputTextQuery.replace("/n/r",System.lineSeparator());
+        return inputTextQuery ;// inputTextQuery.replace("/n/r",System.lineSeparator());
     }
 }
