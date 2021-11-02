@@ -1,3 +1,4 @@
+let pageURL="http://localhost:8081/tasks/manageTasks/";
 //Open Modals
 function openDeleteModal() {
     closeUpdateModal();
@@ -10,9 +11,10 @@ function openUpdateModal() {
     let taskId = EntityManager.findOne("taskId");
     let title = EntityManager.findOne("title");
     let description = EntityManager.findOne("description");
+    editor.setData(description);
     document.getElementById("taskId").value = taskId;
     document.getElementById("taskTitle").value = title;
-    document.getElementById("taskDescription").innerHTML = description;
+    document.getElementById("taskDescription").value = description;
 }
 
 
@@ -52,6 +54,14 @@ function closeUpdateModal() {
     fillTable();
 }
 
+//Close Modals with clicking anywhere on the page
+window.onclick = function (event) {
+    if ((event.target === document.getElementById('delete-modal')) || event.target === document.getElementById('update-modal') || event.target === document.getElementById('choose-modal')) {
+        closeDeleteModal();
+        closeUpdateModal();
+    }
+}
+
 //Close Modals with esc
 window.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
@@ -87,8 +97,8 @@ function onClickCallBack(s) {
 }
 
 function getValidTextForSendRequest(text) {
-    let out = text.replace(/\n/g, "/n/r");
-    return out;
+  //  let out = text.replace(/\n/g, "/n/r");
+    return text;
 }
 
 

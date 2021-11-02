@@ -9,37 +9,38 @@ public class Validation {
     }
 
     public  String protectFromHtmlInjection(String input) {
-        if (input == null) {
-            return null;
-        } else {
-            int length = input.length();
-            StringBuilder output = allocateStringBuilder(length);
-
-            for(int i = 0; i < length; ++i) {
-                char c = input.charAt(i);
-                switch(c) {
-                    case '"':
-                        output.append("&;");
-                        break;
-                    case '&':
-                        output.append("&amp;");
-                        break;
-                    case '\'':
-                        output.append("&#39;");
-                        break;
-                    case '<':
-                        output.append("&lt;");
-                        break;
-                    case '>':
-                        output.append("&gt;");
-                        break;
-                    default:
-                        output.append(c);
-                }
-            }
-
-            return output.toString();
-        }
+//        if (input == null) {
+//            return null;
+//        } else {
+//            int length = input.length();
+//            StringBuilder output = allocateStringBuilder(length);
+//
+//            for(int i = 0; i < length; ++i) {
+//                char c = input.charAt(i);
+//                switch(c) {
+//                    case '"':
+//                        output.append("&;");
+//                        break;
+//                    case '&':
+//                        output.append("&amp;");
+//                        break;
+//                    case '\'':
+//                        output.append("&#39;");
+//                        break;
+//                    case '<':
+//                        output.append("&lt;");
+//                        break;
+//                    case '>':
+//                        output.append("&gt;");
+//                        break;
+//                    default:
+//                        output.append(c);
+//                }
+//            }
+//
+//            return output.toString();
+//        }
+        return input;
     }
 
     private  StringBuilder allocateStringBuilder(int length) {

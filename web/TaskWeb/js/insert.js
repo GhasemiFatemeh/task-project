@@ -38,3 +38,18 @@ function showFailedSnackbar(){
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
+
+function getValidTextForSendRequest(text) {
+   // let out = text.replace(/\n/g, "/n/r");
+    return text;
+}
+
+function createEditor()
+{
+        ClassicEditor
+        .create( document.querySelector( '#editor' ) )
+        .catch( error => {
+        console.error( error );
+    } );
+
+}

@@ -8,14 +8,14 @@
     <link href="../imports/bootstrap.min.css" rel="stylesheet">
     <link href="../css/insert.css" rel="stylesheet">
     <script src="../js/insert.js"></script>
-    <script src="../js/common.js"></script>
-    <script src="../js/entity.js"></script>
+    <script src="../js/taskManagement.js"></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
 <header class="">
 
     <h1 class="text-white text-center m-4">Add Task</h1>
-    <div class="text-center mb-4"><a href="../../index.html" onclick="location.reload()" class="text-center rounded bg-light border p-1 mb-5"><i class="fas fa-home"></i></a></div>
+    <div class="text-center mb-4"><a href="../../index.html" onclick="location.reload()" class="text-white text-center border rounded-circle p-3 mb-5"><i class="fas fa-home"></i></a></div>
 </header>
 <main class="mb-4">
     <div class="col-7 m-auto border rounded p-4">
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group col-12">
                 <label class="text-white" for="taskDescription">Description</label>
-                <textarea class="form-control" id="taskDescription" name="description" rows="9" type="text"></textarea>
+                <div class="form-control" id="taskDescription" name="description" rows="9" type="text"></div>
             </div>
             <div class="d-flex justify-content-center">
                 <button type="button" onclick="sendInformation()" class="btn btn-default btn-link btn-success text-decoration-none text-white mr-2">Submit</button>
@@ -46,5 +46,14 @@
     <div id="successSnackbar"><p class="text-center bg-success rounded text-white p-2">Task is successfully saved!</p></div>
     <div id="failedSnackbar"><p class="text-center bg-danger rounded text-white p-2">Task isn't saved successfully!</p></div>
 </main>
+
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#taskDescription' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
+
 </body>
 </html>

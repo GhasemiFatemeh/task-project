@@ -75,6 +75,7 @@ public class TaskController {
     @Produces("application/json")
     public Response update(@QueryParam("id") String id, @QueryParam("taskId") String taskId, @QueryParam("title") String title, @QueryParam("description") String description) {
         try {
+            System.out.println(description);
             Tasks task = new Tasks();
             task.setId(Long.parseLong(id))
                     .setTaskId(Long.parseLong(taskId))
