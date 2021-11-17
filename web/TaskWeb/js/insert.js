@@ -53,4 +53,3 @@ function createEditor()
     } );
 
 }
-document.querySelector('.ck-editor__main p').style.height='100px';
