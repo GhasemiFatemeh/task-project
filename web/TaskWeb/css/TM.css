@@ -13,8 +13,6 @@ i{
 .modal{
     background-color: rgba(71, 78, 93,0.8);
     animation: fadein 0.25s;
-    height: 100%;
-
 }
 nav{
     background-color: rgba(0,0,0,0.4);
@@ -27,4 +25,8 @@ nav{
 
 .ck-editor__editable_inline {
     min-height: 400px;
+}
+
+.cke_show_borders {
+    overflow: scroll;
 }

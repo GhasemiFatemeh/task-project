@@ -17,7 +17,10 @@
 <body onload="fillTable()">
 <header>
     <nav class="nav navbar navbar-light  d-flex flex-sm-column flex-lg-row  mb-4">
-        <a class=" p-2 rounded bg-light" href="../../index.html" onclick="location.reload()"><i class="fas fa-home"></i></a>
+        <div class="d-flex">
+            <a class="p-2 mr-2 rounded bg-light" href="../../index.html" onclick="location.reload()"><i class="fas fa-home"></i></a>
+            <a href="insertTask.html"><button class="btn btn-primary text-white">New Task</button></a>
+        </div>
         <h1 class=" text-white">
             Task Management
         </h1>
@@ -101,7 +104,7 @@
                     </div>
                     <div class="form-group col-12">
                         <label for="taskDescription">Description</label>
-                        <textarea class="form-control h-50" id="taskDescription" rows="10"></textarea>
+                        <textarea class="form-control" id="taskDescription"></textarea>
                     </div>
                     <div class="d-flex justify-content-center">
                         <button class="btn btn-success text-white mr-2"

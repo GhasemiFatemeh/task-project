@@ -31,8 +31,7 @@ function updateTask() {
     let taskId = document.getElementById("taskId").value;
     let title = document.getElementById("taskTitle").value;
     let description = document.getElementById("taskDescription").value;
-    let desc=new Description(description);
-    Request.send("GET", pageURL+"tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + JSON.stringify(desc));
+    Request.send("GET", pageURL+"tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + JSON.stringify(description));
     closeUpdateModal();
     location.reload();
 }
@@ -90,7 +89,3 @@ function getValidTextForSendRequest(text) {
   //  let out = text.replace(/\n/g, "/n/r");
     return text;
 }
-
-
-
-
