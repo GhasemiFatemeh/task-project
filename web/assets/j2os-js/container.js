@@ -1,6 +1,5 @@
 class Request {
     static send(requestType, requestUrl, callBack, requestBody, headers) {
-        alert(requestUrl);
         if (typeof XMLHttpRequest === "undefined") {
             XMLHttpRequest = function () {
                 try {

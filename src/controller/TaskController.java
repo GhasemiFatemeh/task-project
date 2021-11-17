@@ -75,7 +75,6 @@ public class TaskController {
     @Produces("application/json")
     public Response update(@QueryParam("id") String id, @QueryParam("taskId") String taskId, @QueryParam("title") String title, @QueryParam("description") String description) {
         try {
-            System.out.println(description);
             Tasks task = new Tasks();
             task.setId(Long.parseLong(id))
                     .setTaskId(Long.parseLong(taskId))
@@ -99,5 +98,24 @@ public class TaskController {
         }
     }
 
+    @GET
+    @Path("/findByTaskId")
+    public Response findByTaskId(@QueryParam("taskId") String taskId){
+        try{
+            TaskService.getInstance().findTaskByTaskId(Long.parseLong(taskId));
+            return Response
+                    .status(Response.Status.OK)
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+
+        }
+        catch (Exception e){
+           return Response
+                    .status(Response.Status.FORBIDDEN)
+                    .type(MediaType.APPLICATION_JSON)
+                    .build();
+        }
+
+    }
 }
 

@@ -51,3 +51,7 @@ body{
     from {bottom: 40px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+
+.ck-editor__editable_inline {
+    min-height: 400px;
+}
