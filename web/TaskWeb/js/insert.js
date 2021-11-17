@@ -2,16 +2,20 @@ function sendInformation() {
     let taskId = document.getElementById('taskId').value;
     let title = document.getElementById('taskTitle').value;
     let description = document.getElementById('taskDescription').value;
-    let desc=new Description(description);
-    let req = pageURL+'tasks/manageTasks/register?taskId=' + taskId + '&title=' + title + '&description=' + JSON.stringify(desc);
+    let req = 'taskId=' + taskId
+        + '&title='
+        + title
+        + '&description=salam';
+       // + description;
     let http;
     if (navigator.appName === "Microsoft Internet Explorer") {
         http = new ActiveXObject("Microsoft.XMLHTTP");
     } else {
         http = new XMLHttpRequest();
     }
-    http.open("GET", req, true);
-    http.send();
+    http.open("POST", pageURL+'tasks/manageTasks/register', true);
+    http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
+    http.send(req);
     http.onreadystatechange = function () {
         if (http.readyState === 4 ) {
             if (http.status === 200) {

@@ -13,11 +13,15 @@ import javax.ws.rs.core.Response;
 @Path("/manageTasks")
 public class TaskController {
 
-    @GET
+    @POST
     @Produces("application/json")
     @Path("/register")
-    public Response register(@QueryParam("taskId") String taskId, @QueryParam("title") String title, @QueryParam("description") String description) {
+    public Response register(@HeaderParam("body") String body ,@QueryParam("taskId") String taskId, @QueryParam("title") String title, @QueryParam("description") String description) {
         try {
+            System.out.println("body"+body);
+            System.out.println(taskId);
+            System.out.println(title);
+            System.out.println("aa"+ description);
             Tasks task = new Tasks();
             task.setTaskId(Long.parseLong(taskId)).setTitle(title).setDescription(description);
             //validation
