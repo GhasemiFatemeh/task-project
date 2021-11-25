@@ -79,11 +79,7 @@ public class TaskController {
             task.setId(Long.parseLong(id))
                     .setTaskId(Long.parseLong(taskId))
                     .setTitle(title)
-                    .setDescription(Tools.getInstance().convertToNormalBreakLine(description));
-            //validation
-            task.setTitle(Validation.getInstance().protectFromHtmlInjection(task.getTitle()));
-            task.setDescription(Validation.getInstance().protectFromHtmlInjection(task.getDescription()));
-            //
+                    .setDescription(description);
             TaskService.getInstance().update(task);
             return Response
                     .status(Response.Status.OK)

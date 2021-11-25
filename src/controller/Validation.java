@@ -42,12 +42,12 @@ public class Validation {
 //        }
         return input;
     }
-
-    private  StringBuilder allocateStringBuilder(int length) {
-        int buflen = length;
-        if (length * 2 > 0) {
-            buflen = length * 2;
-        }
-        return new StringBuilder(buflen);
-    }
+//
+//    private  StringBuilder allocateStringBuilder(int length) {
+//        int buflen = length;
+//        if (length * 2 > 0) {
+//            buflen = length * 2;
+//        }
+//        return new StringBuilder(buflen);
+//    }
 }

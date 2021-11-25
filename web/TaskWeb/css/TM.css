@@ -14,6 +14,7 @@ i{
     background-color: rgba(71, 78, 93,0.8);
     animation: fadein 0.25s;
 }
+
 nav{
     background-color: rgba(0,0,0,0.4);
 }
@@ -25,8 +26,9 @@ nav{
 
 .ck-editor__editable_inline {
     min-height: 400px;
+    overflow: scroll;
 }
 
-.cke_show_borders {
-    overflow: scroll;
+.ck-content blockquote {
+    display: flow-root;
 }

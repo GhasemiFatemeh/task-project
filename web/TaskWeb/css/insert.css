@@ -3,11 +3,6 @@ body{
 }
 
 #successSnackbar , #failedSnackbar{
-    /*position: fixed;*/
-    /*visibility: hidden;*/
-    /*z-index: 1;*/
-    /*top: 30px;*/
-    /*text-align: center;*/
     visibility: hidden;
     margin-left: -125px;
     text-align: center;
@@ -54,5 +49,12 @@ body{
 
 .ck-editor__editable_inline {
     min-height: 400px;
-    overflow: auto;
+}
+
+.ck.ck-editor__editable_inline{
+    overflow: scroll;
+}
+
+.ck-content blockquote{
+    display: flow-root;
 }

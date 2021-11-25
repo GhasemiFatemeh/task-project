@@ -1,6 +1,9 @@
 function sendInformation() {
     let taskId = document.getElementById('taskId').value;
     let title = document.getElementById('taskTitle').value;
+    let data = editor.getData();
+    let result = data.replaceAll('&nbsp;', ' ');
+    editor.setData(result);
     let description = editor.getData();
     let req = pageURL+'tasks/manageTasks/register?taskId=' + taskId
         + '&title='
@@ -43,17 +46,16 @@ function showFailedSnackbar(){
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
-function getValidTextForSendRequest(text) {
-   // let out = text.replace(/\n/g, "/n/r");
-    return text;
-}
 
-function createEditor()
-{
-        ClassicEditor
-        .create( document.querySelector( '#editor' ) )
-        .catch( error => {
-        console.error( error );
-    } );
+editor.editing.view.document.on( 'enter', ( evt, data ) => {
+    if ( data.isSoft ) {
+        editor.execute( 'enter' );
+    } else {
+        editor.execute( 'shiftEnter' );
+    }
 
-}
+    data.preventDefault();
+    evt.stop();
+    editor.editing.view.scrollToTheSelection();
+}, { priority: 'high' } );
+editor.scrollIntoView();

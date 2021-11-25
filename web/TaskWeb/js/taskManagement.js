@@ -10,10 +10,10 @@ function openUpdateModal() {
     let taskId = EntityManager.findOne("taskId");
     let title = EntityManager.findOne("title");
     let description = EntityManager.findOne("description");
-    editor.setData(description);
     document.getElementById("taskId").value = taskId;
     document.getElementById("taskTitle").value = title;
-    document.getElementById("taskDescription").value = description;
+    editor.setData(description);
+
 }
 
 
@@ -30,8 +30,8 @@ function updateTask() {
     let id = EntityManager.findOne("id");
     let taskId = document.getElementById("taskId").value;
     let title = document.getElementById("taskTitle").value;
-    let description = document.getElementById("taskDescription").value;
-    Request.send("GET", pageURL+"tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + JSON.stringify(description));
+    let description = editor.getData();
+    Request.send("GET", pageURL+"tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + description);
     closeUpdateModal();
     location.reload();
 }
@@ -85,7 +85,3 @@ function onClickCallBack(s) {
     openUpdateModal();
 }
 
-function getValidTextForSendRequest(text) {
-  //  let out = text.replace(/\n/g, "/n/r");
-    return text;
-}
