@@ -47,12 +47,13 @@ body{
     to {bottom: 0; opacity: 0;}
 }
 
+/*ckeditor*/
 .ck-editor__editable_inline {
-    min-height: 400px;
+    min-height: 40vh;
+   max-height: 40vh;
 }
-
-.ck.ck-editor__editable_inline{
-    overflow: scroll;
+.ck-editor__main{
+    overflow-y: auto;
 }
 
 .ck-content blockquote{

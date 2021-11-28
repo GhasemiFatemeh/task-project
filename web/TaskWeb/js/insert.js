@@ -46,16 +46,3 @@ function showFailedSnackbar(){
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
-
-editor.editing.view.document.on( 'enter', ( evt, data ) => {
-    if ( data.isSoft ) {
-        editor.execute( 'enter' );
-    } else {
-        editor.execute( 'shiftEnter' );
-    }
-
-    data.preventDefault();
-    evt.stop();
-    editor.editing.view.scrollToTheSelection();
-}, { priority: 'high' } );
-editor.scrollIntoView();
