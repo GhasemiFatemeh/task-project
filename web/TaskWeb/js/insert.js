@@ -1,21 +1,18 @@
 function sendInformation() {
     let taskId = document.getElementById('taskId').value;
     let title = document.getElementById('taskTitle').value;
-    let data = editor.getData();
-    let result = data.replaceAll('&nbsp;', ' ');
-    editor.setData(result);
     let description = editor.getData();
     let req = pageURL+'tasks/manageTasks/register?taskId=' + taskId
         + '&title='
         + title
-        + '&description='
-        + description;
+        ;
     let http;
     if (navigator.appName === "Microsoft Internet Explorer") {
         http = new ActiveXObject("Microsoft.XMLHTTP");
     } else {
         http = new XMLHttpRequest();
     }
+
     http.open("POST", req, true);
     http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     http.send();

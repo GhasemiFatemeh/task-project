@@ -14,27 +14,25 @@ import javax.ws.rs.core.Response;
 public class TaskController {
 
     @POST
-    @Produces("application/json")
+    @Consumes("text/plain")
     @Path("/register")
-    public Response register(@HeaderParam("Content-type") String body ,@QueryParam("taskId") String taskId, @QueryParam("title") String title, @QueryParam("description") String description) {
+    public Response register( String desc,@QueryParam("taskId") String taskId, @QueryParam("title") String title) {
         try {
             Tasks task = new Tasks();
-            task.setTaskId(Long.parseLong(taskId)).setTitle(title).setDescription(description);
-            //validation
-            task.setTitle(Validation.getInstance().protectFromHtmlInjection(task.getTitle()));
-            task.setDescription(Validation.getInstance().protectFromHtmlInjection(Tools.getInstance().convertToNormalBreakLine(task.getDescription())));
-            //
+            task.setTaskId(Long.parseLong(taskId))
+                    .setTitle(title)
+                    .setDescription(desc);
             TaskService.getInstance().register(task);
             return Response
                     .status(Response.Status.OK)
                     .entity(task)
-                    .type(MediaType.APPLICATION_JSON)
+                    .type(MediaType.TEXT_PLAIN)
                     .build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response
                     .status(Response.Status.FORBIDDEN)
-                    .type(MediaType.APPLICATION_JSON)
+                    .type(MediaType.TEXT_PLAIN)
                     .build();
         }
     }
