@@ -1,4 +1,32 @@
 class Request {
+
+    static sendPlain(urlWithQueryParams , textBody)
+    {
+        let http;
+        if (navigator.appName === "Microsoft Internet Explorer") {
+            http = new ActiveXObject("Microsoft.XMLHTTP");
+        } else {
+            http = new XMLHttpRequest();
+        }
+
+        http.open("POST", urlWithQueryParams, true);
+        http.setRequestHeader("Content-type","text/plain; charset=utf-8");
+        http.send(textBody);
+        http.onreadystatechange = function () {
+            if (http.readyState === 4 ) {
+                if (http.status === 200) {
+                    http.responseText;
+
+                }
+                else {
+
+                }
+            }
+        }
+
+    }
+
+
     static send(requestType, requestUrl, callBack, requestBody, headers) {
         if (typeof XMLHttpRequest === "undefined") {
             XMLHttpRequest = function () {

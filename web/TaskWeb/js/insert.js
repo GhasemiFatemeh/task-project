@@ -4,8 +4,7 @@ function sendInformation() {
     let description = editor.getData();
     let req = pageURL+'tasks/manageTasks/register?taskId=' + taskId
         + '&title='
-        + title
-        ;
+        + title;
     let http;
     if (navigator.appName === "Microsoft Internet Explorer") {
         http = new ActiveXObject("Microsoft.XMLHTTP");
@@ -14,8 +13,8 @@ function sendInformation() {
     }
 
     http.open("POST", req, true);
-    http.setRequestHeader("Content-type","application/x-www-form-urlencoded");
-    http.send();
+    http.setRequestHeader("Content-type","text/plain; charset=utf-8");
+    http.send(description);
     http.onreadystatechange = function () {
         if (http.readyState === 4 ) {
             if (http.status === 200) {

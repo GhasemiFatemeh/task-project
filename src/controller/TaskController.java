@@ -15,6 +15,7 @@ public class TaskController {
 
     @POST
     @Consumes("text/plain")
+    @Produces("application/json")
     @Path("/register")
     public Response register( String desc,@QueryParam("taskId") String taskId, @QueryParam("title") String title) {
         try {
@@ -25,14 +26,13 @@ public class TaskController {
             TaskService.getInstance().register(task);
             return Response
                     .status(Response.Status.OK)
-                    .entity(task)
-                    .type(MediaType.TEXT_PLAIN)
+                    .type(MediaType.APPLICATION_JSON)
                     .build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response
                     .status(Response.Status.FORBIDDEN)
-                    .type(MediaType.TEXT_PLAIN)
+                    .type(MediaType.APPLICATION_JSON)
                     .build();
         }
     }
@@ -68,10 +68,11 @@ public class TaskController {
         }
     }
 
-    @GET
-    @Path("/update")
+    @POST
+    @Consumes("text/plain")
     @Produces("application/json")
-    public Response update(@QueryParam("id") String id, @QueryParam("taskId") String taskId, @QueryParam("title") String title, @QueryParam("description") String description) {
+    @Path("/update")
+    public Response update(String description ,@QueryParam("id") String id, @QueryParam("taskId") String taskId, @QueryParam("title") String title) {
         try {
             Tasks task = new Tasks();
             task.setId(Long.parseLong(id))
@@ -81,7 +82,6 @@ public class TaskController {
             TaskService.getInstance().update(task);
             return Response
                     .status(Response.Status.OK)
-                    .entity(task)
                     .type(MediaType.APPLICATION_JSON)
                     .build();
         } catch (Exception e) {
