@@ -8,7 +8,7 @@
     <link href="../imports/bootstrap.min.css" rel="stylesheet">
     <link href="../imports/fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet">
     <link href="../imports/jquery-3.6.0.min.js">
-    <script src="../../assets/j2os-js/container.js"></script>
+    <script src="../imports/assets/j2os-js/container.js"></script>
     <script rel="script" src="../js/taskManagement.js"></script>
     <script src="../imports/ckeditor5-build-classic/ckeditor.js"></script>
     <script src="../js/common.js"></script>
@@ -121,18 +121,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    let editor;
-    ClassicEditor
-        .create(document.querySelector('#taskDescription'))
-        .then(newEditor => {
-            editor = newEditor;
-        })
-        .catch(error => {
-            console.error(error);
-        });
-</script>
 
 </body>
 </html>

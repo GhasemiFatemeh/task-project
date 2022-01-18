@@ -10,7 +10,7 @@
     <script src="../js/insert.js"></script>
     <script src="../js/taskManagement.js"></script>
     <script src="../js/common.js"></script>
-    <script src="../../assets/j2os-js/container.js"></script>
+    <script src="../imports/assets/j2os-js/container.js"></script>
     <script src="../imports/ckeditor5-build-classic/ckeditor.js"></script>
     <script src="../imports/jquery-3.6.0.min.js"></script>
     <script src="../imports/ckeditor5-clipboard/src/clipboard.js"></script>
@@ -56,17 +56,6 @@
     <div id="failedSnackbar"><p class="text-center bg-danger rounded text-white p-2">Task isn't saved successfully!</p></div>
 </main>
 
-<script>
-    ClassicEditor
-        .create( document.querySelector( '#taskDescription' ) )
-        .then( newEditor => {
-            editor = newEditor;
-        } )
-        .catch( error => {
-            console.error( error );
-        } );
-
-</script>
 
 </body>
 </html>

@@ -1,3 +1,13 @@
+let editor;
+ClassicEditor
+    .create(document.querySelector('#taskDescription'))
+    .then(newEditor => {
+        editor = newEditor;
+    })
+    .catch(error => {
+        console.error(error);
+    });
+
 //Open Modals
 function openDeleteModal() {
     closeUpdateModal();

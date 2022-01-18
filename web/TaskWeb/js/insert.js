@@ -1,3 +1,12 @@
+ClassicEditor
+    .create( document.querySelector( '#taskDescription' ) )
+    .then( newEditor => {
+        editor = newEditor;
+    } )
+    .catch( error => {
+        console.error( error );
+    } );
+
 function sendInformation() {
     let taskId = document.getElementById('taskId').value;
     let title = document.getElementById('taskTitle').value;
