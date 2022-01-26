@@ -33,7 +33,6 @@ function deleteTask() {
     Request.send("GET", pageURL+"tasks/manageTasks/delete?id=" + id);
     closeDeleteModal();
     location.reload();
-
 }
 
 function updateTask() {
@@ -48,10 +47,24 @@ function updateTask() {
     location.reload();
 }
 
-function selectTask(){
- Request.send("Get", pageURL+"tasks/manageTasks/")
+function findTasks(){
+    let input= document.getElementById("searchbar").value;
+    let req= pageURL+"tasks/manageTasks/findTasks?input=" + input;
+    Request.send("GET", req)
+    let http;
+    if (navigator.appName === "Microsoft Internet Explorer") {
+        http = new ActiveXObject("Microsoft.XMLHTTP");
+    } else {
+        http = new XMLHttpRequest();
+    }
+    http.open("GET", req, true);
+    http.send();
+    http.onreadystatechange = function () {
+        if (http.readyState === 4) {
+            UIManager.fillSelectableTable(["taskId", "title", "description"], http.responseText, 'tableRow', 'onclick', 'onClickCallBack');
+        }
+    }
 }
-
 
 //close modals
 function closeDeleteModal() {

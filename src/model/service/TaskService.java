@@ -6,7 +6,8 @@ import model.repository.TasksDataAccess;
 
 import java.util.List;
 
-public class TaskService implements TaskServiceBase {
+
+public class TaskService implements TaskServiceBase{
     private static final TaskService taskService = new TaskService();
 
     private TaskService() {
@@ -42,6 +43,21 @@ public class TaskService implements TaskServiceBase {
     public Tasks findTaskById(long id) throws Exception {
         try (TasksDataAccess tasksDataAccess = new TasksDataAccess()) {
             return tasksDataAccess.selectOneTaskById(id);
+        }
+    }
+
+    @Override
+    public List<Tasks> findTasks(String input) throws Exception {
+        Tasks tasks = new Tasks();
+        try (TasksDataAccess tasksDataAccess = new TasksDataAccess()) {
+            try {
+                tasks.setTaskId(Long.parseLong(input));
+            } catch (NumberFormatException e) {
+                tasks.setTaskId(-1);
+            }
+            tasks.setTitle(input);
+            tasks.setDescription(input);
+            return tasksDataAccess.selectTask(tasks);
         }
     }
 

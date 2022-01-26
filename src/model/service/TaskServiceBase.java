@@ -20,5 +20,8 @@ public interface TaskServiceBase {
 
     Tasks findTaskByDescription(String description) throws Exception;
 
+    List<Tasks> findTasks(String input) throws Exception;
+
     void update(Tasks task) throws Exception;
+
 }

@@ -1,12 +1,15 @@
 package model.repository;
 
+import common.exception.InvalidIdType;
 import common.exception.TaskNotFound;
 import model.entity.Tasks;
 import model.repository.common.JDBC;
 
+import java.security.InvalidAlgorithmParameterException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,6 +67,23 @@ public class TasksDataAccess implements AutoCloseable {
         return tasksList;
     }
 
+    public List<Tasks> selectTask(Tasks tasks) throws SQLException  {
+        preparedStatement= connection.prepareStatement("select * from tasks where taskId like \"%\"+?+\"%\" or title like ? or description like ?");
+        preparedStatement.setLong(1, tasks.getTaskId());
+        preparedStatement.setString(2, "%"+tasks.getTitle()+"%");
+        preparedStatement.setString(3, "%"+tasks.getDescription()+"%");
+        ResultSet resultSet = preparedStatement.executeQuery();
+        List<Tasks> tasksList= new ArrayList<>();
+        while (resultSet.next()){
+            Tasks task=new Tasks()
+                    .setId(resultSet.getLong("id"))
+                    .setTaskId(resultSet.getLong("taskId"))
+                    .setTitle(resultSet.getString("title"))
+                    .setDescription(resultSet.getString("description"));
+            tasksList.add(task);
+        }
+        return tasksList;
+    }
     public Tasks selectOneTaskById(long id) throws Exception {
         preparedStatement = connection.prepareStatement("select * from tasks where id=?");
         preparedStatement.setLong(1, id);

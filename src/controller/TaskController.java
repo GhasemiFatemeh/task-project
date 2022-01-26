@@ -1,7 +1,5 @@
 package controller;
 
-import com.coverity.security.Escape;
-import common.Tools;
 import common.exception.ExceptionWrapper;
 import model.entity.Tasks;
 import model.service.TaskService;
@@ -9,6 +7,7 @@ import model.service.TaskService;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Path("/manageTasks")
 public class TaskController {
@@ -47,6 +46,20 @@ public class TaskController {
             e.printStackTrace();
             return ExceptionWrapper.getMessage(e);
         }
+    }
+
+    @GET
+    @Path("/findTasks")
+    @Produces("application/json")
+    public Object findTasks(@QueryParam("input") String input){
+        try {
+            return TaskService.getInstance().findTasks(input);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return ExceptionWrapper.getMessage(e);
+        }
+
     }
 
     @GET
@@ -91,6 +104,9 @@ public class TaskController {
                     .build();
         }
     }
+
+
+
 
     @GET
     @Path("/findByTaskId")

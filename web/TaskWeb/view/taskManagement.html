@@ -7,7 +7,6 @@
     <link href="../css/TM.css" rel="stylesheet">
     <link href="../imports/bootstrap.min.css" rel="stylesheet">
     <link href="../imports/fontawesome-free-5.15.3-web/css/all.min.css" rel="stylesheet">
-    <link href="../imports/jquery-3.6.0.min.js">
     <script src="../imports/assets/j2os-js/container.js"></script>
     <script rel="script" src="../js/taskManagement.js"></script>
     <script src="../imports/ckeditor5-build-classic/ckeditor.js"></script>
@@ -25,8 +24,8 @@
             Task Management
         </h1>
         <span class="d-flex justify-content-end">
-            <input class="form-control" id="form1" placeholder="search..." type="search"/>
-        <label class="form-label" for="form1"></label>
+            <input oninput="findTasks()" class="form-control" id="searchbar" placeholder="search..." type="search"/>
+        <label class="form-label" for="searchbar"></label>
                 <button class="btn btn-primary ml-1" type="button">
             <i class="fas fa-search"></i>
         </button>
@@ -124,66 +123,3 @@
 
 </body>
 </html>
-
-
-<!-- <tr>
-    <td>1</td>
-    <td>124273</td>
-    <td>log out - Defect Removal</td>
-    <td>(I know what is it!)</td>
-    <td class="text-center"><i class="far fa-trash-alt mr-3" onclick="openDeleteModal();"></i><i
-            class="far fa-edit" onclick="openUpdateModal()"></i></td>
-</tr>
-<tr>
-    <td>2</td>
-    <td>124272</td>
-    <td>SP>Advice>Goal - Defect Removal</td>
-    <td>Exception occurs</td>
-    <td class="text-center"><i class="far fa-trash-alt mr-3" onclick="openDeleteModal();"></i><i
-            class="far fa-edit" onclick="openUpdateModal()"></i></td>
-</tr>
-<tr>
-    <td>3</td>
-    <td>124270</td>
-    <td>SP> profile> F.I credential - Defect Removal</td>
-    <td>Page doesn't load completely</td>
-    <td class="text-center"><i class="far fa-trash-alt mr-3" onclick="openDeleteModal();"></i><i
-            class="far fa-edit" onclick="openUpdateModal()"></i></td>
-</tr>
-<tr>
-    <td>4</td>
-    <td>124277</td>
-    <td>SP> chores> Roles - Defect Removal</td>
-    <td>strange errors are showed</td>
-    <td class="text-center"><i class="far fa-trash-alt mr-3" onclick="openDeleteModal();"></i><i
-            class="far fa-edit" onclick="openUpdateModal()"></i></td>
-</tr> -->
-
-<!--choose modal-->
-<!--<div aria-hidden="true" class="modal" id="choose-modal" role="dialog" tabindex="-1">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="d-flex justify-content-between p-3 modal-header">
-                <h4 class="modal-title ml-1">Choose Activity</h4>
-                <button aria-label="Close" class="close" data-dismiss="modal"
-                        onclick="document.getElementById('choose-modal').style.display='none'"
-                        type="button">
-                    <span aria-hidden="true"
-                          title="Close Modal">&times;</span>
-                </button>
-            </div>
-            <div class="text-center m-3 modal-body">
-                <p>What do you want to do with This Task?</p>
-            </div>
-            <div class="d-flex justify-content-around modal-footer">
-                <button class="btn btn-warning" onclick="openUpdateModal()"
-                        type="button">Update
-                </button>
-                <button class="btn btn-danger" id="delete-task-button"
-                        onclick="openDeleteModal()"
-                        type="button">Delete
-                </button>
-            </div>
-        </div>
-    </div>
-</div>-->
