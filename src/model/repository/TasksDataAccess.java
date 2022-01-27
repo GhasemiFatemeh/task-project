@@ -68,8 +68,8 @@ public class TasksDataAccess implements AutoCloseable {
     }
 
     public List<Tasks> selectTask(Tasks tasks) throws SQLException  {
-        preparedStatement= connection.prepareStatement("select * from tasks where taskId like \"%\"+?+\"%\" or title like ? or description like ?");
-        preparedStatement.setLong(1, tasks.getTaskId());
+        preparedStatement= connection.prepareStatement("select * from tasks where taskId like ? or title like ? or description like ?");
+        preparedStatement.setString(1,"%"+tasks.getTaskId()+"%");
         preparedStatement.setString(2, "%"+tasks.getTitle()+"%");
         preparedStatement.setString(3, "%"+tasks.getDescription()+"%");
         ResultSet resultSet = preparedStatement.executeQuery();

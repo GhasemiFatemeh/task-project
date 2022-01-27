@@ -1,3 +1,4 @@
+//kind of import CKeditor
 let editor;
 ClassicEditor
     .create(document.querySelector('#taskDescription'))
@@ -14,7 +15,6 @@ function openDeleteModal() {
     document.getElementById('delete-modal').style.display = 'block';
 }
 
-//update task when update button is clicked
 function openUpdateModal() {
     document.getElementById('update-modal').style.display = 'block';
     let taskId = EntityManager.findOne("taskId");
@@ -35,6 +35,7 @@ function deleteTask() {
     location.reload();
 }
 
+//update task when update button is clicked
 function updateTask() {
     let id = EntityManager.findOne("id");
     let taskId = document.getElementById("taskId").value;
@@ -47,10 +48,10 @@ function updateTask() {
     location.reload();
 }
 
+//search tasks
 function findTasks(){
     let input= document.getElementById("searchbar").value;
     let req= pageURL+"tasks/manageTasks/findTasks?input=" + input;
-    Request.send("GET", req)
     let http;
     if (navigator.appName === "Microsoft Internet Explorer") {
         http = new ActiveXObject("Microsoft.XMLHTTP");
@@ -66,6 +67,14 @@ function findTasks(){
     }
 }
 
+//click search icon by enter
+document.getElementById("searchbar").addEventListener("keyup", function(event) {
+    if (event.key=== 'Enter') {
+        event.preventDefault();
+        document.getElementById("searchBtn").click();
+    }
+});
+
 //close modals
 function closeDeleteModal() {
     document.getElementById('delete-modal').style.display = 'none';
@@ -76,6 +85,8 @@ function closeUpdateModal() {
     fillTable();
 }
 
+
+
 //Close Modals with esc
 window.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
@@ -85,7 +96,7 @@ window.addEventListener('keydown', function (event) {
 })
 
 
-//Request
+//fill table
 function fillTable() {
     let http;
     if (navigator.appName === "Microsoft Internet Explorer") {
