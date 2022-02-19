@@ -41,7 +41,6 @@ function updateTask() {
     let taskId = document.getElementById("taskId").value;
     let title = document.getElementById("taskTitle").value;
     let description = editor.getData();
-   // Request.send("GET", pageURL+"tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title + "&description=" + description);
     let req = pageURL+"tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title;
     Request.sendPlain(req,description);
     closeUpdateModal();

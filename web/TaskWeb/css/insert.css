@@ -2,7 +2,7 @@ body{
     background:  linear-gradient(to right, #12c2e9, #c471ed, #f64f59) fixed;
 }
 
-#successSnackbar , #failedSnackbar{
+#successSnackbar , #failedSnackbar, #updateSnackbar,#successfullyUpdatedSnackbar{
     visibility: hidden;
     margin-left: -125px;
     text-align: center;
@@ -13,7 +13,8 @@ body{
     bottom: 40px;
 }
 
-#successSnackbar.show, #failedSnackbar.show {
+
+#successSnackbar.show, #failedSnackbar.show, #updateSnackbar.show, #successfullyUpdatedSnackbar.show {
     visibility: visible;
     -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
     animation: fadein 0.5s, fadeout 0.5s 2.5s;

@@ -23,7 +23,7 @@
             <div class="d-flex">
                 <div class="form-group col-6">
                     <label class="text-white" for="taskId">Task ID</label>
-                    <input autofocus class="form-control necessary-input" id="taskId" name="taskId" required
+                    <input autofocus onchange="checkRepeatedTaskId()" class="form-control necessary-input" id="taskId" name="taskId" required
                            type="number">
                 </div>
                 <div class="form-group col-6">
@@ -36,8 +36,8 @@
                 <textarea class="form-control" id="taskDescription" name="description" rows="9" type="text"></textarea>
             </div>
             <div class="d-flex justify-content-center">
-                <button type="button" onclick="sendInformation()" class="btn btn-default btn-link btn-success text-decoration-none text-white mr-2">Submit</button>
-                <button type="button" onclick="redirectTasksPage()" class="btn btn-link btn-warning text-decoration-none text-white">
+                <button type="button" onclick="sendInformation();" class="btn btn-default btn-link btn-success text-decoration-none text-white mr-2">Submit</button>
+                <button type="button" id="save-button" onclick="redirectTasksPage()" class="btn btn-link btn-warning text-decoration-none text-white">
                     See All Tasks
                 </button>
             </div>
@@ -45,6 +45,8 @@
     </div>
     <div id="successSnackbar"><p class="text-center bg-success rounded text-white p-2">Task is successfully saved!</p></div>
     <div id="failedSnackbar"><p class="text-center bg-danger rounded text-white p-2">Task isn't saved successfully!</p></div>
+    <div id="updateSnackbar"><p class="text-center bg-primary rounded text-white p-2">You are editing an already existed Task!</p></div>
+    <div id="successfullyUpdatedSnackbar"><p class="text-center bg-success rounded text-white p-2">Task is successfully saved!</p></div>
 </main>
 
 
