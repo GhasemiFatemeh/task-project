@@ -51,3 +51,65 @@ function showFailedSnackbar(){
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 }
 
+function showUpdateSnackbar(){
+    let x= document.getElementById("updateSnackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function showSuccessfullyUpdatedSnackbar(){
+    let x= document.getElementById("successfullyUpdatedSnackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function updateInfo(){
+    let id = EntityManager.findOne("id");
+    let taskId = document.getElementById("taskId").value;
+    let title = document.getElementById("taskTitle").value;
+    let description = editor.getData();
+    let http;
+    if (navigator.appName === "Microsoft Internet Explorer") {
+        http = new ActiveXObject("Microsoft.XMLHTTP");
+    } else {
+        http = new XMLHttpRequest();
+    }
+    let req = pageURL+"tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title;
+    http.open("POST", req , true);
+    http.send(description);
+   return  http.onreadystatechange = function () {
+       return http.status === 200&&http.readyState === 4;
+    }
+
+}
+
+function showSuccessfullyUpdateSnackbarConditionally(){
+    if (updateInfo()){
+        showSuccessfullyUpdatedSnackbar()
+    }
+    else {
+        showFailedSnackbar();
+    }
+}
+
+
+
+function checkRepeatedTaskId(){
+    let taskId = document.getElementById('taskId').value;
+    fetch(pageURL+"tasks/manageTasks/checkRepeatedTaskId?taskId="+taskId, {
+        method: 'GET',
+    })
+        .then(response => response.json())
+        .then(data => {
+            showUpdateSnackbar();
+            document.getElementById("taskTitle").value= data[0];
+            editor.setData(data[1])
+            document.getElementById("save-button").addEventListener("click", showSuccessfullyUpdateSnackbarConditionally);
+        })
+        .catch(error => {
+
+        });
+}
+
+
+

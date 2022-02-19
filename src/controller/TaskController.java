@@ -3,10 +3,13 @@ package controller;
 import common.exception.ExceptionWrapper;
 import model.entity.Tasks;
 import model.service.TaskService;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.List;
 
 @Path("/manageTasks")
 public class TaskController {
@@ -124,7 +127,29 @@ public class TaskController {
                     .type(MediaType.APPLICATION_JSON)
                     .build();
         }
-
     }
+
+    @GET
+    @Path("/checkRepeatedTaskId")
+    @Produces("application/json")
+    public Object checkRepeatedTaskId(@QueryParam("taskId") String taskId){
+        try {
+            List<Tasks> allTasks = TaskService.getInstance().findAll();
+            List<String> titleAndDescription = new ArrayList<>();
+            ObjectMapper objectMapper=new ObjectMapper();
+            for (Tasks task : allTasks) {
+                if (task.getTaskId()==Long.parseLong(taskId)){
+                     titleAndDescription.add(task.getTitle());
+                     titleAndDescription.add(task.getDescription());
+                    return objectMapper.writeValueAsString(titleAndDescription);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
 
