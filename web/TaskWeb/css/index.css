@@ -1,9 +1,8 @@
 body{
-    background: linear-gradient(to right, #dd3e54, #6be585) no-repeat fixed;
 }
 
 .special-color{
-    background-color: #e57373;
+    background-color: black;
     color: #fafafa;
 }
 h3{

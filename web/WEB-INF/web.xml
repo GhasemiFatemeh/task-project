@@ -3,6 +3,42 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    
+    <servlet>
+        <servlet-name>update</servlet-name>
+        <servlet-class>controller.Update</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>update</servlet-name>
+        <url-pattern>/update/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>remove</servlet-name>
+        <servlet-class>controller.Remove</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>remove</servlet-name>
+        <url-pattern>/delete/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>save</servlet-name>
+        <servlet-class>controller.Register</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>save</servlet-name>
+        <url-pattern>/register/*</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>findAll</servlet-name>
+        <servlet-class>controller.FindAll</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>findAll</servlet-name>
+        <url-pattern>/findAll</url-pattern>
+    </servlet-mapping>
     <servlet>
         <servlet-name>jersey-serlvet</servlet-name>
         <servlet-class>
