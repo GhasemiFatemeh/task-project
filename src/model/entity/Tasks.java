@@ -6,6 +6,22 @@ public class Tasks {
     private String title;
     private String description;
 
+    public Tasks() {
+    }
+
+    public Tasks(long taskId, String title, String description) {
+        this.taskId = taskId;
+        this.title = title;
+        this.description = description;
+    }
+
+    public Tasks(long id, long taskId, String title, String description) {
+        this.id = id;
+        this.taskId = taskId;
+        this.title = title;
+        this.description = description;
+    }
+
     public long getId() {
         return id;
     }
