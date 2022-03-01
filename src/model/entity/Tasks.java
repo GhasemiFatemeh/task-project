@@ -1,9 +1,18 @@
 package model.entity;
 
+import javax.persistence.*;
+
+@Table(name = "tasks")
+@Entity(name = "tasks")
 public class Tasks {
+    @Id
+    @Column(name = "id")
     private long id;
+    @Column(name = "taskId")
     private long taskId;
+    @Column(name = "title")
     private String title;
+    @Column(name = "description")
     private String description;
 
     public Tasks() {
