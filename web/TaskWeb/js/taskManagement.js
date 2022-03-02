@@ -89,8 +89,8 @@ function closeUpdateModal() {
 //Close Modals with esc
 window.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
-        closeDeleteModal();
-        closeUpdateModal();
+        document.getElementById('delete-modal').style.display = 'none';
+        document.getElementById('update-modal').style.display = 'none';
     }
 })
 
