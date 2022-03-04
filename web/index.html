@@ -7,6 +7,7 @@
     <link href="TaskWeb/imports/bootstrap.min.css" rel="stylesheet">
     <link href="TaskWeb/css/index.css" rel="stylesheet">
     <script src="TaskWeb/imports/assets/j2os-js/container.js"></script>
+
 </head>
 <body>
 <header>
@@ -15,9 +16,9 @@
         <a href="#news">News</a>
         <a href="#contact">Contact</a>
         <a href="#about">About</a>
-        <button class="btn btn-success float-right m-2" onclick="document.getElementById('modal').style.display='block'">login</button>
+        <a href="#" class="float-right" onclick="document.getElementById('login-modal').style.display='block'; this.blur();">login</a>
     </div>
-    <h1 class=" m-5 text-white">What do you want to do?</h1>
+    <h1 class="m-5 text-white">What do you want to do?</h1>
 </header>
 <main>
     <div>
@@ -57,33 +58,36 @@
     </div>
 </main>
 
-<div id="modal" class="modal">
-
+<div id="login-modal" class="modal position-fixed w-100 vh-100 overflow-auto">
+    <div class="modal-lg modal-dialog" role="document">
     <form class="modal-content animate" action="/action_page.php" method="post">
-        <div class="imgcontainer">
-            <span onclick="document.getElementById('modal').style.display='none'" class="close" title="Close Modal">&times;</span>
-            <img src="TaskWeb/image/img_avatar2.png" alt="Avatar" class="avatar">
+        <div class="text-center m-3 position-relative">
+            <span onclick="document.getElementById('login-modal').style.display='none'" class="close" title="Close Modal">&times;</span>
+            <img src="TaskWeb/image/3-39791_add-user-group-man-woman-icon-red-avatar.png" alt="Avatar" class="rounded-circle w-25">
         </div>
 
-        <div class="container">
+        <div class="modal-body">
             <label for="uname"><b>Username</b></label>
-            <input type="text" placeholder="Enter Username" name="uname" id="uname" required>
+            <input type="text" class="form-control w-100 p-2 d-inline-block input-group mt-1 mb-3" placeholder="Enter Username" name="uname" id="uname" required>
 
             <label for="psw"><b>Password</b></label>
-            <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
-
-            <button type="submit" class="modal-button">Login</button>
+            <input type="password" class="form-control w-100 p-2 d-inline-block input-group mt-1 mb-4" placeholder="Enter Password" name="psw" id="psw" required>
+            <button type="submit" class="btn btn-success w-100 p-2">Login</button>
+            <div class="form-check">
             <label>
-                <input type="checkbox" checked="checked" name="remember"> Remember me
+                <input type="checkbox" class="form-check-input" checked="checked" name="remember"> Remember me
             </label>
+            </div>
         </div>
 
-        <div class="container" style="background-color:#f1f1f1">
-            <button type="button" onclick="document.getElementById('modal').style.display='none'" class="cancelbtn modal-button">Cancel</button>
-            <span class="psw">Forgot <a href="#">password?</a></span>
+        <div class="p-3" style="background-color:#f1f1f1">
+            <button type="button" onclick="document.getElementById('login-modal').style.display='none'" class="p-2 btn btn-danger w-auto">Cancel</button>
+            <span class="psw"><a href="#">Forgot password?</a></span>
         </div>
     </form>
+    </div>
 </div>
 
 </body>
+<script src="TaskWeb/js/index.js"></script>
 </html>
