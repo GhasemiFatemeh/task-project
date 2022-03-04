@@ -1,7 +1,9 @@
 package controller;
 
+import common.jsonprovider.JsonProvider;
 import model.entity.Tasks;
 import model.service.TaskService;
+import org.codehaus.jackson.map.ObjectMapper;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,8 +18,7 @@ public class FindTasks extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            List<Tasks> foundTasks = TaskService.getInstance().findTasks(req.getParameter("input"));
-            req.setAttribute("foundTasks", foundTasks);
+            resp.getWriter().println(JsonProvider.toJson(TaskService.getInstance().findTasks(req.getParameter("input"))));
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -30,7 +30,7 @@ function openUpdateModal() {
 //delete task when delete button is clicked
 function deleteTask() {
     let id = EntityManager.findOne("id");
-    Request.send("GET", pageURL+"tasks/manageTasks/delete?id=" + id);
+    Request.send("GET", pageURL+"delete?id=" + id);
     closeDeleteModal();
     location.reload();
 }
@@ -41,7 +41,7 @@ function updateTask() {
     let taskId = document.getElementById("taskId").value;
     let title = document.getElementById("taskTitle").value;
     let description = editor.getData();
-    let req = pageURL+"tasks/manageTasks/update?id=" + id + "&taskId=" + taskId + "&title=" + title;
+    let req = pageURL+"update?id=" + id + "&taskId=" + taskId + "&title=" + title;
     Request.sendPlain(req,description);
     closeUpdateModal();
     location.reload();
@@ -50,7 +50,7 @@ function updateTask() {
 //search tasks
 function findTasks(){
     let input= document.getElementById("searchbar").value;
-    let req= pageURL+"tasks/manageTasks/findTasks?input=" + input;
+    let req= pageURL+"findTasks?input=" + input;
     let http;
     if (navigator.appName === "Microsoft Internet Explorer") {
         http = new ActiveXObject("Microsoft.XMLHTTP");
@@ -103,7 +103,7 @@ function fillTable() {
     } else {
         http = new XMLHttpRequest();
     }
-    http.open("GET", pageURL+"tasks/manageTasks/findAll", true);
+    http.open("GET", pageURL+"findAll", true);
     http.send();
     http.onreadystatechange = function () {
         if (http.readyState === 4) {

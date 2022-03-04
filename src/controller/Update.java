@@ -8,15 +8,20 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.stream.Collectors;
 
 
 @WebServlet("/update")
 public class Update extends HttpServlet {
+
     @Override
-    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException {
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
-            TaskService.getInstance().update(new Tasks(Long.parseLong(req.getParameter("taskId")), req.getParameter("title"), req.getParameter("description")));
+            Tasks tasks= new Tasks().setId(Long.parseLong(req.getParameter("id"))).setTaskId(Long.parseLong(req.getParameter("taskId"))).setTitle(req.getParameter("title")).setDescription(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
+            TaskService.getInstance().update(tasks);
         }catch (Exception e){
             ExceptionWrapper.getMessage(e);
         }
