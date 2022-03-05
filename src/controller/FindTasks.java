@@ -18,6 +18,7 @@ public class FindTasks extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            resp.setContentType("text/plain");
             resp.getWriter().println(JsonProvider.toJson(TaskService.getInstance().findTasks(req.getParameter("input"))));
         } catch (Exception e) {
             e.printStackTrace();

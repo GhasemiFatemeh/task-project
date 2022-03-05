@@ -20,7 +20,11 @@ public class Update extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try{
-            Tasks tasks= new Tasks().setId(Long.parseLong(req.getParameter("id"))).setTaskId(Long.parseLong(req.getParameter("taskId"))).setTitle(req.getParameter("title")).setDescription(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
+            Tasks tasks= new Tasks()
+                    .setId(Long.parseLong(req.getParameter("id")))
+                    .setTaskId(Long.parseLong(req.getParameter("taskId")))
+                    .setTitle(req.getParameter("title"))
+                    .setDescription(req.getReader().lines().collect(Collectors.joining(System.lineSeparator())));
             TaskService.getInstance().update(tasks);
         }catch (Exception e){
             ExceptionWrapper.getMessage(e);

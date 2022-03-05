@@ -22,6 +22,7 @@ public class FindAll extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            resp.setContentType("text/plain");
             resp.getWriter().println(JsonProvider.toJson(TaskService.getInstance().findAll()));
         } catch (Exception e) {
             ExceptionWrapper.getMessage(e);
